@@ -113,3 +113,121 @@ let copyedContainerStyles = cloneDeep(containerStyles);
 // _.cloneDeep(value)
 // 참고: https://lodash.com/docs/4.17.15#cloneDeep
 // CDN : https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
+
+//!----------------------------------------------------------------------------
+
+//* 값 복사
+// - null
+// - undefined
+// - number
+// - string
+// - boolean
+
+let repeating_count = 3;
+let display_headline_content = "값 복사 vs 값 참조";
+let is_toggle_menu = false;
+
+//* 값 복사
+// 불변(Immutable) 데이터의 경우 그 값이 복사된다.
+// 숫자 값, 문자 값, 불리언 값, null, undefined
+
+//* 값 복사
+let b = display_headline_content;
+
+console.log(b.replace("복사", "copy")); // 값 copy vs 값 참조
+
+b = b.replace("복사", "copy");
+
+//* 담긴 값이 달라진 것
+console.log(b); // 값 copy vs 값 참조
+console.log(display_headline_content); // 값 복사 vs 값 참조
+
+let d = is_toggle_menu;
+
+d; //false
+
+d = !d; //true
+
+d; //true
+is_toggle_menu; //false
+
+//-----------------------------------------------------------------
+//* 검증!
+// 변수에 할당된 값이 변경되었을 때
+// 다른 변수에 담긴 값이 변경되지 않았단 것은
+// 값이 복사되었음을 의미한다.
+
+const myFamily = {
+  size: 4,
+  moto: "정직하게 살자",
+  religious_belief: false,
+  members: ["아버지", "어머니", "언니", "나"],
+  getMembers: function () {
+    return this.members;
+  },
+  addMembers: function (new_member) {
+    this.members.push(new_member);
+  },
+};
+
+const homeTasks = [
+  "바닦 쓸고 닦기",
+  "침구류 정리",
+  "화장실 청소",
+  "설거지",
+  "분리 수거",
+];
+
+let h = homeTasks; //['바닦 쓸고 닦기', '침구류 정리', '화장실 청소', '설거지', '분리 수거']
+
+h.pop(); // '분리 수거'
+
+h; //['바닦 쓸고 닦기', '침구류 정리', '화장실 청소', '설거지']
+homeTasks; //['바닦 쓸고 닦기', '침구류 정리', '화장실 청소', '설거지']
+
+homeTasks.unshift("분리수거"); //5
+homeTasks; //['분리수거', '바닦 쓸고 닦기', '침구류 정리', '화장실 청소', '설거지']
+h; //['분리수거', '바닦 쓸고 닦기', '침구류 정리', '화장실 청소', '설거지']
+
+h === homeTasks; //true
+
+function copyArray(arr) {
+  let copy = [];
+  for (let i = 0, l = arr.length; i < l; i++) {
+    copy[i] = arr[i];
+  }
+  return copy;
+}
+
+let u = copyArray(homeTasks);
+u; //['분리수거', '바닦 쓸고 닦기', '침구류 정리', '화장실 청소', '설거지']
+
+u === homeTasks; //false
+
+let j = myFamily;
+
+j.size; //4
+j.size = 6; //6
+
+j; //{ size : 6, ... }
+myFamily; //{ size : 6, ... }
+
+let y = {};
+
+for (let key in myFamily) {
+  y[key] = myFamily[key];
+}
+
+console.log(y);
+
+let q = copyArray([3, 6, 9]);
+q; //[3, 6, 9]
+
+q === [3, 6, 9]; //false
+
+let yu = [3, 6, 9, 12];
+
+let qu = copyArray(yu);
+
+//*복사가 된것이므로 같지 않다
+yu === qu; //false
