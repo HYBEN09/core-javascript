@@ -12,5 +12,7 @@ module.exports = {
   },
   rules: {
     "no-unused-vars": "off",
+    // 정의되지 않는것에 접근하려하면 내는 경고: off
+    "no-undef": "off",
   },
 };
