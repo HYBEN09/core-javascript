@@ -6,3 +6,12 @@ h1 {
   margin: 0;
   transform: translate(-50%, -50%);
 }
+
+span {
+  display: inline-block;
+  transition: all 0.5s;
+}
+
+span.is-active {
+  transform: translateY(-300px);
+}
