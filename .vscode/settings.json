@@ -15,5 +15,6 @@
         },
         "comments": "",
         "textMateRules": []
-    }
+    },
+    "liveServer.settings.port": 5501
 }

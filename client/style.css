@@ -15,3 +15,52 @@ span {
 span.is-active {
   transform: translateY(-300px);
 }
+
+.ground {
+  width: 600px;
+  height: 400px;
+  background: greenYellow;
+  border: 10px solid black;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ball {
+  transition: all 0.3s ease;
+  /* ball을 눌렀을때 처음 자리로 가는 오류 해결. */
+  /* 마우스로 인식이 되지 않게 하는 속성 */
+  pointer-events: none;
+}
+
+.emotion {
+  font-size: 50px;
+  position: absolute;
+  pointer-events: none;
+}
+
+.visual {
+  padding: 1.5rem;
+  background: #331b3f;
+}
+
+.news {
+  padding: 1rem;
+  background: #acc7b4;
+}
+
+.desc {
+  padding: 1rem;
+  background: #f0edcc;
+}
+
+.pop {
+  width: 30vw;
+  height: 30vw;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
