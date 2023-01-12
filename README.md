@@ -6,3 +6,11 @@
 해당 학습 자료는 해당 브랜치 이동 후 확인 가능합니다. 
 
 [Javascript Core 브랜치](https://ko.javascript.info)
+
+
+### delegation-practice
+
+✅  part01 - vanilla js를 사용하여 part 01 완성
+✅  part02 - jquery를 사용하여 part02 완성
+✅  part03 - swiper를 사용하여 part03 완성
+✅  part04 - key event 배우며 part04 완성 

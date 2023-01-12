@@ -1,8 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    node: true,
     es2021: true,
+    node: true,
   },
   extends: "eslint:recommended",
   overrides: [],
@@ -10,5 +10,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    "no-unused-vars": "off",
+  },
 };
