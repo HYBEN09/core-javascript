@@ -10,7 +10,7 @@
 
 ### delegation-practice
 
-✅  part01 - vanilla js를 사용하여 part 01 완성
-✅  part02 - jquery를 사용하여 part02 완성
-✅  part03 - swiper를 사용하여 part03 완성
-✅  part04 - key event 배우며 part04 완성 
+✅  part01 - vanilla js를 사용하여 part 01 완성 </br>
+✅  part02 - jquery를 사용하여 part02 완성 </br>
+✅  part03 - swiper를 사용하여 part03 완성 </br>
+✅  part04 - key event 배우며 part04 완성 </br>
