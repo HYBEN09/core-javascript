@@ -3,7 +3,8 @@ import {
   getNode,
   insertLast,
   sum,
-  throwTypeError,
+  getInputValue,
+  clearContents,
 } from "./lib/index.js";
 
 const firstNum = getNode("#firstNumber");
@@ -12,20 +13,6 @@ const doneButton = getNode("#done");
 const result = getNode(".result");
 
 //* 함수 ----------------------------------------------------------
-
-function getInputValue(node) {
-  if (typeof node === "string") node = getNode(node);
-  if (node.tagName !== "INPUT")
-    throwTypeError("getInputValue 함수는 INPUT ELEMENT 만 허용됩니다");
-  return node.value;
-}
-
-function clearContents(node) {
-  if (typeof node === "string") node = getNode(node);
-  node.textContent = "";
-}
-
-//* ===============================================================
 
 function handler(e) {
   e.preventDefault();
