@@ -1,7 +1,7 @@
-//* util function
+import { getNode, throwTypeError } from "../index.js";
 
 //addClass
-function addClass(node, className) {
+export function addClass(node, className) {
   if (typeof node === "string") {
     node = getNode(node);
   }
@@ -16,7 +16,7 @@ function addClass(node, className) {
 //*------------------------------------------------------------------------------
 
 //removeClass
-function removeClass(node, className) {
+export function removeClass(node, className) {
   if (typeof node === "string") {
     node = getNode(node);
   }
@@ -35,13 +35,13 @@ function removeClass(node, className) {
 
 //------------------------------------------------------------------------------
 
-function toggleClass(node, className) {
+export function toggleClass(node, className) {
   if (typeof node === "string") {
     node = getNode(node);
   }
 
   if (typeof className !== "string") {
-    TypeError("toggleClass 함수의 두번째 인자는 문자 타입이어야 합니다.");
+    throwTypeError("toggleClass 함수의 두번째 인자는 문자 타입이어야 합니다.");
   }
 
   node.classList.toggle(className);

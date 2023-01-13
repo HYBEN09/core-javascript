@@ -1,12 +1,14 @@
 //* util function
 
-function bindEvent(node, type, handler) {
+import { getNode, throwTypeError } from "../index.js";
+
+export function bindEvent(node, type, handler) {
   if (typeof node === "string") {
     node = getNode(node);
   }
 
-  if (!/mouseenter|click|mousemove|mouseleave/g.test(type)) {
-    typeError(
+  if (!/mouseenter|click|mousemove|mouseleave|change/g.test(type)) {
+    throwTypeError(
       "bindEvent 함수의 두 번째 인자는 유효한 이벤트 타입 이어야 합니다."
     );
   }
@@ -20,6 +22,6 @@ function bindEvent(node, type, handler) {
   return () => node.removeEventListener(type, handler);
 }
 
-const off = bindEvent(".first", "click", handler);
+// const off = bindEvent(".first", "click", handler);
 
-bindEvent(".second", "click", off);
+// bindEvent(".second", "click", off);

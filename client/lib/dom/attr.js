@@ -1,4 +1,7 @@
 //? util function
+
+import { getNode, throwTypeError } from "../index.js";
+
 //* get 함수 만들기
 function getAttr(element, attrName) {
   if (typeof element === "string") {
@@ -17,7 +20,7 @@ function setAttr(element, attrName, value) {
   }
 
   if (typeof attrName !== "string") {
-    throw new TypeError(
+    throw new throwTypeError(
       "setAttr 함수의 2번째 인자의 타입은 문자 타입 이어야 합니다"
     );
   }
@@ -30,7 +33,7 @@ function setAttr(element, attrName, value) {
   }
 
   if (!value) {
-    throw new SyntaxError("value 인자 유형은 값이 존재해야 합니다.");
+    throw new throwTypeError("value 인자 유형은 값이 존재해야 합니다.");
   }
 
   return element.setAttribute(attrName, value);
@@ -39,7 +42,7 @@ function setAttr(element, attrName, value) {
 // setAttr(".first", "data-value", "hello");
 
 //* common 함수 만들기
-function attr(element, attrName, value) {
+export function attr(element, attrName, value) {
   if (!value) {
     return getAttr(element, attrName);
   } else {

@@ -1,15 +1,15 @@
-const throwError = (message) => {
+export const throwError = (message) => {
   throw new Error(message);
 };
 
-const throwSyntaxError = (message) => {
+export const throwSyntaxError = (message) => {
   throw new SyntaxError(message);
 };
 
-const throwReferenceError = (message) => {
+export const throwReferenceError = (message) => {
   throw new ReferenceError(message);
 };
 
-const throwTypeError = (message) => {
+export const throwTypeError = (message) => {
   throw new TypeError(message);
 };

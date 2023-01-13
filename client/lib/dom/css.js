@@ -1,4 +1,4 @@
-//*util function
+import { getNode, throwTypeError } from "../index.js";
 
 function getStyle(node, prop) {
   if (typeof node === "string") {
@@ -6,15 +6,15 @@ function getStyle(node, prop) {
   }
 
   if (!node || node.nodeType !== document.ELEMENT_NODE) {
-    throw new Error("첫 번째 매개변수인 node는 ELEMENT_NODE이여야 합니다.");
+    throwTypeError("첫 번째 매개변수인 node는 ELEMENT_NODE이여야 합니다.");
   }
 
   if (typeof prop !== "string") {
-    throw new Error("두 번째 매개변수인 prop의 타입은 string 이여야 합니다.");
+    throwTypeError("두 번째 매개변수인 prop의 타입은 string 이여야 합니다.");
   }
 
   if (!(prop in document.body.style)) {
-    throw new SyntaxError(
+    throwTypeError(
       "두 번째 매개변수인 prop는 CSS 표준 속성을 사용해야 합니다."
     );
   }
@@ -29,19 +29,19 @@ function setStyle(node, prop, value) {
   }
 
   if (!value) {
-    throwSyntaxError("세번째 인자는 필수 값 입니다");
+    throwTypeError("세번째 인자는 필수 값 입니다");
   }
 
   if (!node || node.nodeType !== document.ELEMENT_NODE) {
-    throwSyntaxError("첫 번째 매개변수인 node는 ELEMENT_NODE이여야 합니다.");
+    throwTypeError("첫 번째 매개변수인 node는 ELEMENT_NODE이여야 합니다.");
   }
 
   if (typeof prop !== "string") {
-    throwSyntaxError("두 번째 매개변수인 prop의 타입은 string 이여야 합니다.");
+    throwTypeError("두 번째 매개변수인 prop의 타입은 string 이여야 합니다.");
   }
 
   if (!(prop in document.body.style)) {
-    throwSyntaxError(
+    throwTypeError(
       "두 번째 매개변수인 prop는 CSS 표준 속성을 사용해야 합니다."
     );
   }
@@ -52,7 +52,7 @@ function setStyle(node, prop, value) {
   node.style[prop] = value;
 }
 
-function css(node, prop, value) {
+export function css(node, prop, value) {
   return !value ? getStyle(node, prop) : setStyle(node, prop, value);
 }
 

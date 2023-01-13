@@ -1,4 +1,4 @@
-function getNode(node) {
+export function getNode(node) {
   if (typeof node !== "string") {
     throw new TypeError("getNode의 함수의 인자는 문자 타입이어야 합니다.");
   }
@@ -6,7 +6,7 @@ function getNode(node) {
   return document.querySelector(node);
 }
 
-function getNodes(node) {
+export function getNodes(node) {
   if (typeof node !== "string") {
     throw new TypeError("getNode의 함수의 인자는 문자 타입이어야 합니다.");
   }
