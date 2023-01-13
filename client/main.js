@@ -1,4 +1,10 @@
-import { bindEvent, getNode, insertLast, throwError } from "./lib/index.js";
+import {
+  bindEvent,
+  getNode,
+  insertLast,
+  sum,
+  throwTypeError,
+} from "./lib/index.js";
 
 const firstNum = getNode("#firstNumber");
 const secondNum = getNode("#secondNumber");
@@ -10,16 +16,8 @@ const result = getNode(".result");
 function getInputValue(node) {
   if (typeof node === "string") node = getNode(node);
   if (node.tagName !== "INPUT")
-    throwError("getInputValue 함수는 INPUT ELEMENT 만 허용됩니다");
+    throwTypeError("getInputValue 함수는 INPUT ELEMENT 만 허용됩니다");
   return node.value;
-}
-
-function sum(valueA, valueB) {
-  if (typeof valueA !== "number" || typeof valueB !== "number") {
-    throwError("value 값은 숫자여야 합니다.");
-  }
-
-  return valueA + valueB;
 }
 
 function clearContents(node) {
