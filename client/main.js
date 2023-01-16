@@ -1,10 +1,13 @@
 import {
+  attr,
   bindEvent,
+  clearContents,
   diceAnimation,
   disableElement,
   enableElement,
   getNode,
   getNodes,
+  insertLast,
   invisibleElement,
   visibleElement,
 } from "./lib/index.js";
@@ -22,6 +25,10 @@ import {
 // 4. visible 활성 유틸 함수 만들기
 // 5. toggleState 유틸 함수 만들기
 
+// * [ 레코드 템플릿 뿌리기 ]
+// 1. renderRecordListItem 함수 만들기
+// 2. HTML 템플릿 만들기
+// 3. 템플릿 뿌리기
 //*----------------------------------------------------------------------------
 
 // const rollingDiceButton = getNode(".buttonGroup > button:nth-child(1)");
@@ -33,9 +40,32 @@ const [rollingDiceButton, recordButton, resetButton] = getNodes(
   ".buttonGroup > button"
 );
 
+//* 레코드 템플릿 뿌리기------------------------------------------------------------
+let count = 0;
+let total = 0;
+
 const recordListWrapper = getNode(".recordListWrapper");
+
+function renderRecordListItem() {
+  // let diceValue = Number(cube.dataset.dice);
+  let diceValue = Number(attr("#cube", "data-dice"));
+
+  const newRecordListItem = /* html */ `
+  <tr>
+    <td>${++count}</td>
+    <td>${diceValue}</td>
+    <td>${(total += diceValue)}</td>
+  </tr>
+  `;
+
+  insertLast(".recordListWrapper tbody", newRecordListItem);
+
+  recordListWrapper.scrollTop = recordListWrapper.scrollHeight;
+}
+
 //* IIFE ----------------------------------------------------------
 
+//* 주사위돌리기 함수
 const handleRollingDice = (() => {
   //접근이 가능하게 하려고
   let isRolling = false;
@@ -60,16 +90,23 @@ const handleRollingDice = (() => {
   };
 })();
 
+//* 주사위 돌린 기록 함수
 const handleRecord = () => {
   visibleElement(recordListWrapper);
+
+  renderRecordListItem();
 };
 
+//* 주사위 초기화 함수
 const handleReset = () => {
   invisibleElement(recordListWrapper);
+  clearContents(".recordListWrapper tbody");
+
+  count = 0;
+  total = 0;
 };
 
 //* 이벤트 리스너 ---------------------------------------------------------------
-rollingDiceButton.addEventListener("click", handleRollingDice);
-// bindEvent(rollingDiceButton, "click", handleRollingDice);
+bindEvent(rollingDiceButton, "click", handleRollingDice);
 bindEvent(recordButton, "click", handleRecord);
 bindEvent(resetButton, "click", handleReset);
