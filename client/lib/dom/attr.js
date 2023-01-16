@@ -11,8 +11,6 @@ function getAttr(element, attrName) {
   return element.getAttribute(attrName);
 }
 
-getAttr(".first", "class"); //first
-
 //* set 함수 만들기
 function setAttr(element, attrName, value) {
   if (typeof element === "string") {

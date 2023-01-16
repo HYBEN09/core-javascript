@@ -6,3 +6,5 @@ export * from "./getNode.js";
 export * from "./insert.js";
 export * from "./getInputValue.js";
 export * from "./clearContents.js";
+export * from "./showAlert.js";
+export * from "./copy.js";

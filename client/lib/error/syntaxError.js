@@ -1,4 +1,3 @@
-// 📂 syntaxError.js
-export function syntaxError(message) {
+export const throwSyntaxError = (message) => {
   throw new SyntaxError(message);
-}
+};

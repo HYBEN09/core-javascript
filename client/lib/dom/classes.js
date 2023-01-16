@@ -7,7 +7,7 @@ export function addClass(node, className) {
   }
 
   if (typeof className !== "string") {
-    TypeError("addClass 함수의 두번째 인자는 문자 타입이어야 합니다.");
+    throwTypeError("addClass 함수의 두번째 인자는 문자 타입이어야 합니다.");
   }
 
   node.classList.add(className);
