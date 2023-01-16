@@ -1,3 +1,5 @@
+//메모이제이션: 브라우저에게 호출을 많이 하지 않기 위해
+
 export const memo = (() => {
   const cache = {};
   return (key, callback) => {
@@ -14,6 +16,9 @@ export const memo = (() => {
   };
 })();
 
+//클로저 안하면
+// memo()("name", "tiger")
+
 //* 예시
 // memo("name", "tiger")
 // cache = {
@@ -21,4 +26,4 @@ export const memo = (() => {
 // }
 
 //? 많은 양의 함수들을 넣으려고 => 확장
-memo("cube", () => document.querySelector("#cube")); //{cube: div#cube}
+// memo("cube", () => document.querySelector("#cube")); //{cube: div#cube}
