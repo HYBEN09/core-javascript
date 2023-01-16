@@ -1,9 +1,11 @@
 //* util function
 
-import { getNode, throwTypeError } from "../index.js";
+import { throwTypeError } from "../error/typeError.js";
+import { isFunction, isString } from "../utils/typeOf.js";
+import { getNode } from "./getNode.js";
 
 export function bindEvent(node, type, handler) {
-  if (typeof node === "string") {
+  if (isString(node)) {
     node = getNode(node);
   }
 
@@ -13,7 +15,7 @@ export function bindEvent(node, type, handler) {
     );
   }
 
-  if (typeof handler !== "function") {
+  if (!isFunction(handler)) {
     throwTypeError("세번째 인자인 이벤트 핸들러는 함수형만 설정 가능합니다.");
   }
 

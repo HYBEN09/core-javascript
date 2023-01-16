@@ -1,6 +1,6 @@
 //util function
 
-import { throwTypeError } from "../error/index.js";
+import { throwTypeError } from "../error/typeError.js";
 import { getNode } from "./getNode.js";
 
 export function insertBefore(node, text) {

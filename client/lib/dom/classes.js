@@ -1,12 +1,14 @@
-import { getNode, throwTypeError } from "../index.js";
+import { throwTypeError } from "../error/typeError.js";
+import { isString } from "../utils/typeOf.js";
+import { getNode } from "./getNode.js";
 
 //addClass
 export function addClass(node, className) {
-  if (typeof node === "string") {
+  if (isString(node)) {
     node = getNode(node);
   }
 
-  if (typeof className !== "string") {
+  if (!isString(className)) {
     throwTypeError("addClass 함수의 두번째 인자는 문자 타입이어야 합니다.");
   }
 
@@ -17,7 +19,7 @@ export function addClass(node, className) {
 
 //removeClass
 export function removeClass(node, className) {
-  if (typeof node === "string") {
+  if (isString(node)) {
     node = getNode(node);
   }
 
@@ -26,7 +28,7 @@ export function removeClass(node, className) {
     return;
   }
 
-  if (typeof className !== "string") {
+  if (!isString(className)) {
     throwTypeError("removeClass 함수의 두번째 인자는 문자 타입이어야 합니다.");
   }
 
@@ -36,11 +38,11 @@ export function removeClass(node, className) {
 //------------------------------------------------------------------------------
 
 export function toggleClass(node, className) {
-  if (typeof node === "string") {
+  if (isString(node)) {
     node = getNode(node);
   }
 
-  if (typeof className !== "string") {
+  if (!isString(className)) {
     throwTypeError("toggleClass 함수의 두번째 인자는 문자 타입이어야 합니다.");
   }
 
