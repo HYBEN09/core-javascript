@@ -8,7 +8,9 @@
 
 import { throwTypeError } from "../error/typeError.js";
 
-//기본값 -> {}={}
+//* XHR -----------------------------------------------------------------------
+
+//기본값 -> { } = { }
 export function xhrData({
   url = "",
   method = "GET",
@@ -107,6 +109,8 @@ xhrData.delete = (url, onSuccess, onFail) => {
   });
 };
 
+//* 적용 예시 -----------------------------------------------------
+
 // xhrData.delete(
 //   "https://jsonplaceholder.typicode.com/users/1",
 //   (res) => {
@@ -141,3 +145,107 @@ xhrData.delete = (url, onSuccess, onFail) => {
 //     bs: "harness real-time e-markets",
 //   },
 // });
+
+//* Promise API ------------------------------------------------------------------
+const defaultOptions = {
+  url: "",
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  },
+  body: null,
+};
+
+export const xhrPromise = (userOptions = {}) => {
+  // 객체 합성(믹스인)
+  // 구조 분해 할당
+  const { url, method, body, headers } = Object.assign(
+    {},
+    defaultOptions,
+    userOptions
+  );
+
+  // validation
+  if (!url) {
+    throwTypeError("서버와 요청할 url 인자는 반드시 필요합니다.");
+  }
+
+  // create
+  const xhr = new XMLHttpRequest();
+
+  // open
+  xhr.open(method, url);
+
+  // send
+  xhr.send(body ? JSON.stringify(body) : null);
+
+  // return promise object
+  return new Promise((resolve, reject) => {
+    // listen
+    xhr.addEventListener("readystatechange", () => {
+      const { status, readyState, response, error } = xhr;
+      if (status >= 200 || status < 400) {
+        if (readyState === 4) {
+          resolve(JSON.parse(response));
+        }
+      } else {
+        reject(error);
+      }
+    });
+  });
+};
+
+//* 적용 예시 =====================================================
+// xhrPromise({
+//   url: "https://jsonplaceholder.typicode.com/users",
+// })
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+//*==============================================================
+
+// READ
+xhrPromise.get = (url) => {
+  return xhrPromise({ url });
+};
+
+// CREATE
+xhrPromise.post = (url, body) => {
+  return xhrPromise({
+    url,
+    body,
+    method: "POST",
+  });
+};
+
+// UPDATE
+xhrPromise.put = (url, body) => {
+  return xhrPromise({
+    url,
+    body,
+    method: "PUT",
+  });
+};
+
+// DELETE
+xhrPromise.delete = (url) => {
+  return xhrPromise({
+    url,
+    method: "DELETE",
+  });
+};
+
+//* xhrPromise 적용예시 =================================================================
+// xhrPromise
+//   .get("https://jsonplaceholder.typicode.com/users")
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
