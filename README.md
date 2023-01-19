@@ -10,7 +10,7 @@
 - - -
 
 ## 비동기 통신을 이용하여 UserList 뿌리기 (+ gsap 사용 )
-- dom / userList.js  유틸함수 만들기 
+- dom / userList.js  유틸함수 만들기 <br/>
 ✅ createUserCard <br/>
 ✅ createSpinner <br/>
 ✅ createEmptyCard <br/>
