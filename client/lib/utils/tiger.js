@@ -66,7 +66,7 @@ tiger.put = async (url, body, options) => {
 
 tiger.delete = async (url, options) => {
   return tiger({
-    method: "GET",
+    method: "DELETE",
     url,
     ...options,
   });
