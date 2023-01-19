@@ -4,6 +4,7 @@ import {
   attr,
   bindEvent,
   changeColor,
+  clearContents,
   delayP,
   getNode as $,
   renderEmptyCard,
@@ -70,7 +71,8 @@ const handler = (e) => {
   let id = attr(article, "data-index").slice(5);
 
   tiger.delete(`http://localhost:3000/users/${id}`).then(() => {
-    userCardContainer.innerHTML = "";
+    // userCardContainer.textContent = "";
+    clearContents(userCardContainer);
     rendingUserList();
   });
 };
