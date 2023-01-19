@@ -1,4 +1,4 @@
-//? readyState
+// ? readyState
 //  0: uninitalized(초기화)
 //  1: loading(로딩)
 //  2: loaded(로딩 완료된)
@@ -7,6 +7,7 @@
 //?-----------------------------------------------------------------
 
 import { throwTypeError } from "../error/typeError.js";
+import { insertLast } from "../index.js";
 
 //* XHR -----------------------------------------------------------------------
 
@@ -23,15 +24,16 @@ export function xhrData({
     "Access-Control-Allow-Origin": "*",
   },
 } = {}) {
-  if (!url) {
-    throwTypeError("서버와 요청할 url 인자는 반드시 필요합니다.");
-  }
+  // if (!url) {
+  //   throwTypeError("서버와 요청할 url 인자는 반드시 필요합니다.");
+  // }
 
   const xhr = new XMLHttpRequest();
 
   //* 비동기 통신 오픈 ---------------------------------------------------
   xhr.open(method, url);
 
+  //? Header 를 순환
   // Object.entries(headers).forEach(([key, value]) => {
   //   xhr.setRequestHeader(key, value);
   // });
@@ -44,9 +46,8 @@ export function xhrData({
     // 완료된 상태만 통신을 확인 하기 위해
     if (status >= 200 && status < 400) {
       if (readyState === 4) {
-        console.log("통신 성공");
-
         // parse -> 문자를 객체화
+        console.log("통신성공");
         onSuccess(JSON.parse(response));
       }
     } else {
@@ -59,9 +60,9 @@ export function xhrData({
   xhr.send(body ?? JSON.stringify(body));
 }
 
-//*---------------------------------------------------------------
+//? 적용예시 ---------------------------------------------------------------
 // xhrData({
-//   url: "https://jsonplaceholder.typicode.com/users",
+//   url: "https://jsonplaceholder.typicode.com/users/1",
 //   onSuccess: (result) => {
 //     console.log(result);
 //   },
@@ -71,7 +72,7 @@ export function xhrData({
 // });
 
 //*-------------------------------------------------------------------
-
+// get 이라는 key에다가 함수를 value로 넣어 주는 것.
 xhrData.get = (url, onSuccess, onFail) => {
   xhrData({
     url,
@@ -123,10 +124,9 @@ xhrData.delete = (url, onSuccess, onFail) => {
 // );
 
 // xhrData("POST", "https://jsonplaceholder.typicode.com/users", {
-//   id: 1,
-//   name: "Leanne Graham",
-//   username: "Bret",
-//   email: "Sincere@april.biz",
+//   name: "hyeben",
+//   username: "hyebeen",
+//   email: "hyebeen@euid.dev",
 //   address: {
 //     street: "Kulas Light",
 //     suite: "Apt. 556",
@@ -137,7 +137,7 @@ xhrData.delete = (url, onSuccess, onFail) => {
 //       lng: "81.1496",
 //     },
 //   },
-//   phone: "1-770-736-8031 x56442",
+//   phone: "010-1123-0562",
 //   website: "hildegard.org",
 //   company: {
 //     name: "Romaguera-Crona",
@@ -198,7 +198,7 @@ export const xhrPromise = (userOptions = {}) => {
 
 //* 적용 예시 =====================================================
 // xhrPromise({
-//   url: "https://jsonplaceholder.typicode.com/users",
+//   url: "https://jsonplaceholder.typicode.com/users/3",
 // })
 //   .then((res) => {
 //     console.log(res);
