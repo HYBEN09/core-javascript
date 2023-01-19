@@ -55,18 +55,18 @@ export function delayP(options = {}) {
 // });
 
 //* callback 지옥 -> 가독성이 좋아짐 --------------------------------------------------------------
-delayP()
-  .then(() => {
-    first.style.top = "-100px";
-    return delayP();
-  })
-  .then(() => {
-    first.style.transform = "rotate(360deg)";
-    return delayP();
-  })
-  .then(() => {
-    first.style.top = "0px";
-  });
+// delayP()
+//   .then(() => {
+//     first.style.top = "-100px";
+//     return delayP();
+//   })
+//   .then(() => {
+//     first.style.transform = "rotate(360deg)";
+//     return delayP();
+//   })
+//   .then(() => {
+//     first.style.top = "0px";
+//   });
 
 //*---------------------------------------------------------------------------------------
 delayP()

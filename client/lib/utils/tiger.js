@@ -18,7 +18,7 @@ export const tiger = async (options = {}) => {
     headers: { ...defaultOptions.headers, ...options.headers },
   };
 
-  console.log(restOptions);
+  // console.log(restOptions);
 
   let response = await fetch(url, restOptions);
 
